@@ -1,6 +1,22 @@
-﻿using System.Collections;
+﻿using Carrot;
+using Firebase.Firestore;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+
+[FirestoreData]
+public struct Good_Night_Data
+{
+	public string id { get; set; }
+	[FirestoreProperty]
+	public string msg { get; set; }
+	[FirestoreProperty]
+	public Carrot.Carrot_Rate_user_data user { get; set; }
+	[FirestoreProperty]
+	public string lang { get; set; }
+	[FirestoreProperty]
+	public string date_create { get; set; }
+}
 
 public class Game_sleep_play : MonoBehaviour {
 
@@ -141,11 +157,8 @@ public class Game_sleep_play : MonoBehaviour {
 			if (this.panel_good_night.activeInHierarchy) {
 				this.panel_good_night.SetActive (false);
 			} else {
-				WWWForm frm_good_night=this.games.carrot.frm_act("get_good_night");
-				this.games.carrot.send_hide(frm_good_night, get_good_night);
 				this.img_good_night_avatar.sprite = this.icon_good_night_avt_default;
 
-				this.games.carrot.db.Collection("good_night");
 			}
 		}
 	}
@@ -184,10 +197,23 @@ public class Game_sleep_play : MonoBehaviour {
 			frm_send_goodnight.AddField("user_name", this.inp_gn_name.text);
 			frm_send_goodnight.AddField("user_type", "0");
 		}
-		this.games.carrot.send(frm_send_goodnight,send_good_night);
-	}
 
-	private void send_good_night(string s_data){
+		Good_Night_Data good_night = new Good_Night_Data();
+		good_night.msg = this.inp_gn_msg.text;
+
+
+        if (this.games.carrot.user.get_id_user_login() != "")
+        {
+			Carrot.Carrot_Rate_user_data user_login = new Carrot_Rate_user_data();
+			user_login.name = this.games.carrot.user.get_data_user_login("name");
+			user_login.id = this.games.carrot.user.get_id_user_login();
+			user_login.lang = this.games.carrot.user.get_lang_user_login();
+			user_login.avatar = this.games.carrot.user.get_data_user_login("avatar");
+			good_night.user = user_login;
+		}
+
+		this.games.carrot.db.Collection("good_night").AddAsync(good_night);
+
 		this.games.carrot.show_msg(PlayerPrefs.GetString("good_night_write", "Write Good Night"), PlayerPrefs.GetString("good_night_success", "Good night success!!!"), Carrot.Msg_Icon.Success);
 		this.btn_close_write_good_night();
 	}
