@@ -88,17 +88,9 @@ public class Game_sheep_tap : MonoBehaviour
         if (this.scores > PlayerPrefs.GetInt("top_socre2", 0))
         {
             PlayerPrefs.SetInt("top_socre2", this.scores);
-            if (this.games.carrot.user.get_lang_user_login() != "")
-            {
-                WWWForm frm =this.games.carrot.frm_act("update_scores2");
-                frm.AddField("user_id", this.games.carrot.user.get_lang_user_login());
-                frm.AddField("new_scores", PlayerPrefs.GetInt("top_socre2", 0).ToString());
-                this.games.carrot.send_hide(frm, act_update_scores);
-            }
+            this.games.carrot.game.update_scores_player(this.scores, 1);
         }
     }
-
-    private void act_update_scores(string s_data){}
 
     [ContextMenu ("Create Sheep")]
     public void create_sheep()

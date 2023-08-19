@@ -128,14 +128,9 @@ public class Game_sleep_play : MonoBehaviour {
 		foreach (Transform sheep_clone in this.transform) {
 			if (sheep_clone.gameObject.name == "sheep") {
                 if (is_pause)
-                {
                     sheep_clone.gameObject.GetComponent<Sheep>().pause();
-                }
                 else
-                {
                     sheep_clone.gameObject.GetComponent<Sheep>().unPause();
-                }
-				
 			}
 		}
 	}
@@ -149,6 +144,8 @@ public class Game_sleep_play : MonoBehaviour {
 				WWWForm frm_good_night=this.games.carrot.frm_act("get_good_night");
 				this.games.carrot.send_hide(frm_good_night, get_good_night);
 				this.img_good_night_avatar.sprite = this.icon_good_night_avt_default;
+
+				this.games.carrot.db.Collection("good_night");
 			}
 		}
 	}

@@ -124,7 +124,6 @@ public class game_handle : MonoBehaviour {
     {
         this.carrot.play_sound_click();
         this.box_inp_customer_sleep=this.carrot.show_input(PlayerPrefs.GetString("goto_sleep"),"Enter the number of sheep you want to count","10");
-        this.box_inp_customer_sleep.set_type(Window_Input_Type.act_done);
         this.box_inp_customer_sleep.inp_text.contentType = InputField.ContentType.IntegerNumber;
         this.box_inp_customer_sleep.set_act_done(this.act_done_customer_sleep);
     }
@@ -201,7 +200,7 @@ public class game_handle : MonoBehaviour {
 
     public void show_top_player()
     {
-        this.GetComponent<Top_player>().show();
+        this.carrot.game.Show_List_Top_player();
     }
 
     public void show_app_other()
