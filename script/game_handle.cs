@@ -123,7 +123,7 @@ public class game_handle : MonoBehaviour {
     public void btn_show_customer_sleep_play()
     {
         this.carrot.play_sound_click();
-        this.box_inp_customer_sleep=this.carrot.show_input(PlayerPrefs.GetString("goto_sleep"),"Enter the number of sheep you want to count","10");
+        this.box_inp_customer_sleep=this.carrot.show_input(PlayerPrefs.GetString("goto_sleep", "Bedtime"),PlayerPrefs.GetString("customer_tip", "Enter the number of sheep you want to count"),"10");
         this.box_inp_customer_sleep.inp_text.contentType = InputField.ContentType.IntegerNumber;
         this.box_inp_customer_sleep.set_act_done(this.act_done_customer_sleep);
     }
@@ -167,7 +167,7 @@ public class game_handle : MonoBehaviour {
         this.box_model_end = box_setting.create_item_of_index("count_end", 1);
         box_model_end.set_title("When finished counting sheep");
         box_model_end.check_type();
-        this.reload_item_setting_model_end();
+        this.reload_item_setting_model_end(); 
 
         box_model_end.set_act(this.change_setting_model_end);
     }
@@ -177,13 +177,13 @@ public class game_handle : MonoBehaviour {
         if (PlayerPrefs.GetInt("is_sheep_end", 0) == 0)
         {
             box_model_end.set_icon(this.sp_setting_model_end_off);
-            box_model_end.set_tip("Off");
+            box_model_end.set_tip("Exit application");
             box_model_end.set_key_lang_tip("count_end_1");
         }
         else
         {
             box_model_end.set_icon(this.sp_setting_model_end_on);
-            box_model_end.set_tip("On");
+            box_model_end.set_tip("Return");
             box_model_end.set_key_lang_tip("count_end_2");
         }
         box_model_end.set_key_lang_title("count_end_tip");
