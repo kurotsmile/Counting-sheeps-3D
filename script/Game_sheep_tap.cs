@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Game_sheep_tap : MonoBehaviour
@@ -84,7 +81,7 @@ public class Game_sheep_tap : MonoBehaviour
         this.panel_gameover.SetActive(true);
         this.tag_apple.gameObject.SetActive(false);
         this.apple2.SetActive(true);
-
+        this.games.carrot.play_vibrate();
         if (this.scores > PlayerPrefs.GetInt("top_socre2", 0))
         {
             PlayerPrefs.SetInt("top_socre2", this.scores);
