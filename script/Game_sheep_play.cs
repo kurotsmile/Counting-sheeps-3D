@@ -172,9 +172,6 @@ public class Game_sheep_play : MonoBehaviour {
 		heart_item.transform.localRotation=Quaternion.Euler(Vector3.zero);
 	}
 
-	[ContextMenu ("Update player scores")]
-	private void update_scores(string s_data){}
-
 	public void add_heart_to_game(){
 		this.add_heart ();
 		this.add_heart ();

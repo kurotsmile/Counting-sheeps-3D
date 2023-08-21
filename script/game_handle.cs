@@ -166,7 +166,9 @@ public class game_handle : MonoBehaviour {
 
         this.box_model_end = box_setting.create_item_of_index("count_end", 1);
         box_model_end.set_title("When finished counting sheep");
+        box_model_end.check_type();
         this.reload_item_setting_model_end();
+
         box_model_end.set_act(this.change_setting_model_end);
     }
 
