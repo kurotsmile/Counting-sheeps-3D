@@ -1,22 +1,5 @@
-﻿using Carrot;
-using Firebase.Firestore;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-
-[FirestoreData]
-public struct Good_Night_Data
-{
-	public string id { get; set; }
-	[FirestoreProperty]
-	public string msg { get; set; }
-	[FirestoreProperty]
-	public Carrot.Carrot_Rate_user_data user { get; set; }
-	[FirestoreProperty]
-	public string lang { get; set; }
-	[FirestoreProperty]
-	public string date_create { get; set; }
-}
 
 public class Game_sleep_play : MonoBehaviour {
 
@@ -120,7 +103,6 @@ public class Game_sleep_play : MonoBehaviour {
 		this.is_run = true;
 		this.set_all_sheep_pause (false);
 	}
-
 
 	private void set_all_sheep_pause(bool is_pause){
 		foreach (Transform sheep_clone in this.transform) {
