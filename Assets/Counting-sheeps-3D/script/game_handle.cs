@@ -171,7 +171,7 @@ public class game_handle : MonoBehaviour {
         box_setting.set_act_before_closing(this.act_close_setting);
 
         this.box_model_end = box_setting.create_item_of_index("count_end", 1);
-        box_model_end.set_title("When finished counting sheep");
+        box_model_end.set_title(this.carrot.L("count_end_tip","When finished counting sheep"));
         box_model_end.check_type();
         this.reload_item_setting_model_end(); 
 
@@ -183,17 +183,13 @@ public class game_handle : MonoBehaviour {
         if (PlayerPrefs.GetInt("is_sheep_end", 0) == 0)
         {
             box_model_end.set_icon(this.sp_setting_model_end_off);
-            box_model_end.set_tip("Exit application");
-            box_model_end.set_key_lang_tip("count_end_1");
+            box_model_end.set_tip(this.carrot.L("count_end_1","Exit application"));
         }
         else
         {
             box_model_end.set_icon(this.sp_setting_model_end_on);
-            box_model_end.set_tip("Return");
-            box_model_end.set_key_lang_tip("count_end_2");
+            box_model_end.set_tip(this.carrot.L("count_end_2","Return"));
         }
-        box_model_end.set_key_lang_title("count_end_tip");
-        box_model_end.load_lang_data();
     }
 
     private void act_close_setting(List<string> list_item_change)
