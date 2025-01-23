@@ -35,9 +35,15 @@ public class game_handle : MonoBehaviour {
 
     void Start () {
         this.carrot.Load_Carrot(check_exit_app);
+        this.ads.On_Load();
+        
         this.carrot.shop.onCarrotPaySuccess += this.onBuySuccessCarrotPay;
         this.carrot.game.load_bk_music(this.sounds[0]);
         this.carrot.change_sound_click(this.sound_click_AudioClip);
+
+        this.ads.onRewardedSuccess=this.carrot.game.OnRewardedSuccess;
+        this.carrot.act_buy_ads_success=this.ads.RemoveAds;
+        this.carrot.game.act_click_watch_ads_in_music_bk=this.ads.ShowRewardedVideo;
 
 		Screen.sleepTimeout = (int)SleepTimeout.NeverSleep;
         this.hide_all_panel();
@@ -123,7 +129,7 @@ public class game_handle : MonoBehaviour {
     public void btn_show_customer_sleep_play()
     {
         this.carrot.play_sound_click();
-        this.box_inp_customer_sleep=this.carrot.Show_input(PlayerPrefs.GetString("goto_sleep", "Bedtime"),PlayerPrefs.GetString("customer_tip", "Enter the number of sheep you want to count"),"10");
+        this.box_inp_customer_sleep=this.carrot.Show_input(this.carrot.lang.Val("goto_sleep", "Bedtime"),this.carrot.lang.Val("customer_tip", "Enter the number of sheep you want to count"),"10");
         this.box_inp_customer_sleep.inp_text.contentType = InputField.ContentType.IntegerNumber;
         this.box_inp_customer_sleep.set_act_done(this.act_done_customer_sleep);
     }
@@ -257,7 +263,7 @@ public class game_handle : MonoBehaviour {
     {
         if (id_product == this.carrot.shop.get_id_by_index(2))
         {
-            this.carrot.Show_msg(PlayerPrefs.GetString("shop", "shop"), PlayerPrefs.GetString("buy_heart_success", "Buy heart success! You can continue the game"), Carrot.Msg_Icon.Success);
+            this.carrot.Show_msg(this.carrot.lang.Val("shop", "shop"),this.carrot.lang.Val("buy_heart_success", "Buy heart success! You can continue the game"), Carrot.Msg_Icon.Success);
             this.game_sheep_play.GetComponent<Game_sheep_play>().add_heart_to_game();
         }
     }
@@ -265,7 +271,7 @@ public class game_handle : MonoBehaviour {
     public void show_help()
     {
         this.carrot.play_sound_click();
-        this.carrot.Show_msg(PlayerPrefs.GetString("help", "Help"), PlayerPrefs.GetString("home_tip", "Sheep anti-insomnia counting app with two main features is going to bed and gaming to help you get rid of straightness and deep sleep. Go to bed: the app will give you a large number of sheep for you to count and drop into songs that make your mind easy to go to sleep: you choose the right time to touch you Sheep help him jump over the fence and you will get points and the second game you have to protect your food by hitting the rescues who are trying to steal your fruit."),Carrot.Msg_Icon.Question);
+        this.carrot.Show_msg(this.carrot.lang.Val("help", "Help"), this.carrot.lang.Val("home_tip", "Sheep anti-insomnia counting app with two main features is going to bed and gaming to help you get rid of straightness and deep sleep. Go to bed: the app will give you a large number of sheep for you to count and drop into songs that make your mind easy to go to sleep: you choose the right time to touch you Sheep help him jump over the fence and you will get points and the second game you have to protect your food by hitting the rescues who are trying to steal your fruit."),Carrot.Msg_Icon.Question);
     }
 
     public void play_sound(int index_sound)

@@ -70,7 +70,7 @@ public class Game_sheep_play : MonoBehaviour {
 		this.add_heart ();
 		this.add_heart ();
 		this.panel_game_over.SetActive (false);
-		this.txt_play_top_score.text = PlayerPrefs.GetString ("hight_socre", "Highest score") + " : " + PlayerPrefs.GetInt ("top_socre", 0);
+		this.txt_play_top_score.text = this.games.carrot.L("hight_socre", "Highest score") + " : " + PlayerPrefs.GetInt ("top_socre", 0);
 	}
 
 	public void add_sheep(){

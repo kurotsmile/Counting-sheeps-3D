@@ -64,7 +64,7 @@ public class Game_sleep_play : MonoBehaviour {
 	}
 
 	public void update_name_music(){
-		this.txt_playe_music_name.text = PlayerPrefs.GetString ("sel_music_music","Good Night Baby");
+		this.txt_playe_music_name.text = this.games.carrot.L("sel_music_music","Good Night Baby");
 	}
 
 	public void add_sheep(){

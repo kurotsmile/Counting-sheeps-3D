@@ -59,7 +59,7 @@ public class Game_sheep_tap : MonoBehaviour
         this.apple2.SetActive(false);
         this.img_btn_pause.sprite = this.icon_pause;
         this.delete_all_sheep();
-        this.txt_play_top_score.text = PlayerPrefs.GetString("hight_socre", "Highest score") + " : " + PlayerPrefs.GetInt("top_socre2", 0);
+        this.txt_play_top_score.text = this.games.carrot.L("hight_socre", "Highest score") + " : " + PlayerPrefs.GetInt("top_socre2", 0);
     }
 
     public void add_scores()
